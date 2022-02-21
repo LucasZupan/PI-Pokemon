@@ -1,0 +1,66 @@
+/* ------------------------------------------ */
+.reset{  
+  color: inherit;
+  text-decoration: inherit;  
+}
+.cardContainer {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  width: 350px;
+  border: 1px;
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+.card{
+  position: relative;
+  background: radial-gradient(
+    circle at 50% 0%, orange 36%, #ffffff 36%);
+  width: 100%;
+  padding: 30px, 20px;  
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+.pokeImage {
+  display: block;
+  width: 180px;
+  max-height: 200px;
+  position: relative;
+  margin: 20px auto;
+}
+.hp {
+  width: 80px;
+  background-color: #ffffff;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 30px;
+  margin-left: auto;
+  font-weight: 400;
+}
+.pokeName {
+  text-align: center;
+  font-weight: 600;
+}
+.pokeTypes {
+  display: flex;
+  justify-content: space-around; 
+  margin: 20px 0px 40px 0;
+} 
+.pokeTypes img { 
+  width: 100px;  
+  position: relative ;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+.hp span, .pokeTypes span {
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+}
+
+.pokeStats {
+  display: flex;
+}
