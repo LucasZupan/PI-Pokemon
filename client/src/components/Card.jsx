@@ -20,6 +20,29 @@ import rock from '../img/types/rock.png';
 import steel from '../img/types/steel.png';
 import water from '../img/types/water.png';
 
+const typeColor = {
+    bug: "#26de81",
+    dark: "#46454a",
+    dragon: "#ffeaa7",
+    electric: "#fed330",
+    fairy: "#FF0079",
+    fighting: "#30336b",
+    fire: "#f0932b",
+    flying: "#8lecec",    
+    grass: "#00b894",
+    ground: "#EFB549",
+    ghost: "#a55eea",
+    ice: "#74b9ff",
+    normal: "#95afc0",
+    poison: "#6c5ce7",
+    psychic: "#a29bfe",
+    rock: "#2d3436",
+    steel: "#5d91ac",
+    water: "#0190FF",    
+}
+
+
+
 function typeImage(value){
     switch (value) {
         case 'bug': return bug;
@@ -45,14 +68,17 @@ function typeImage(value){
 }
 
 export default function Card({id, name, image, str, types, hp, spd, def}) {
-    
-    console.log(typeof(types.map(e => e )[0]));
-    
    
+    const divStyle = {
+        background: `radial-gradient(
+            circle at 50% -12%, ${typeColor[types[0]]} 42%, #ffffff 36%)`
+    };
+
+
     return (        
          <Link to={'/home/'+id} className="reset">  
              <div className="cardContainer" key={id}> 
-                <div className="card">
+                <div className="card" style={divStyle}>
                     <p className="hp">
                         <span>HP </span>
                         {hp}

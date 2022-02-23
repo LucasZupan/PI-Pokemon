@@ -15,7 +15,6 @@ router.get('/', async (req, res, next) => {
         where: { name: name.toLowerCase() },
         include: Type,
       });
-
       if(!pokemonDb) {    
             const myPokemon = await getFromApi(name);            
             res.send(myPokemon);
@@ -23,7 +22,7 @@ router.get('/', async (req, res, next) => {
         const myPokemonDb = loadFromDb(pokemonDb);      
         res.send(myPokemonDb);
     } catch (error) {
-        res.status(404).send("No se encontro pokemon: "+ error);
+        res.status(404).send("Nao se encontro pokemon: "+ error);
     }
   }
 

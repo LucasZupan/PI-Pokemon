@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPokemonByName } from "../actions";
+import pokebola from '../img/pokebola.png';
+import '../styles/SearchBar.css'
 
 export default function SearchBar() {
     const dispatch = useDispatch();
@@ -19,9 +21,9 @@ export default function SearchBar() {
     };
 
     return (
-        <div>
-            <input value={name} type='text'  placeholder="Buscar pokemon..." onChange={(e)=> handleInputChange(e)}/>
-            <button type="submit"  onClick={(e) => handleSubmit(e)}>Search</button>
+        <div className="searchDiv">
+            <input className="searchInput" value={name} type='text'  placeholder="Search pokemon..." onChange={(e)=> handleInputChange(e)}/>
+            <input className="pokebola" type="image" src={pokebola} alt="img not found" onClick={(e) => handleSubmit(e)}/>
         </div>
     )
 }

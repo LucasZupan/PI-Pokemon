@@ -2,8 +2,9 @@ import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {postPokemon, getTypes} from '../actions'
-
-
+import pokemonLogo from '../img/pokemonLogo.png';
+import professorOak from '../img/professorOak.png';
+import '../styles/PokemonCreate.css'
 
 function validate(input) {
     let errors = {};    
@@ -133,21 +134,153 @@ export default function PokemonCreate(){
         });
         navigate('/home');
     }
-
+    
     useEffect(() => {
         dispatch(getTypes());
     }, [dispatch]);
 
+
+    // const divStyle = {
+    //     background: `${typeColor[e.name]}`
+    // };
+    
     return (
         <div>
-            <Link to= '/home'><button>Back to home</button></Link>
-            <h1>Create your Pokemon</h1>
-            <form onSubmit={(e)=> handleSubmit(e)}>
-                <div>
-                    <label>Nombre: </label>
-                    <input type="text" value={input.name} name="name" placeholder='Insert name'onChange={(e) => handleChange(e)}/>
-                    {errors.name && <p>{errors.name}</p>}
+            <nav className="navBar">
+                <Link to= '/home'><img src={pokemonLogo} className='imgHome' alt="Img not found"/></Link> 
+                <Link to= '/home'><button className="buttonNav">Back home</button></Link>
+            </nav>
+            <div className="container">
+                <div className="signup-content">
+                    <div className="signup-form">
+                    <form class="register-form" id="register-form" onSubmit={(e)=> handleSubmit(e)}>
+                        <h2 className="h2Title">CREATE YOUR POKEMON</h2>
+                        <div className="form-row">
+                            <div className="form-group">
+                            <label>Name: </label>
+                                <input type="text" value={input.name} name="name" 
+                                placeholder='Insert name'onChange={(e) => handleChange(e)}/>
+                            </div>
+                            <div className="form-group">
+                                {errors.name && <div className="form-errors">{errors.name}</div>}   
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group">
+                            <label>Health Points: </label>
+                                <input type="number" value={input.hp} name="hp" 
+                                placeholder='0' onChange={(e) => handleChange(e)}/>
+                            </div>
+                            <div className="form-group">
+                                {errors.hp && <div className="form-errors">{errors.hp}</div>}   
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group">
+                            <label>Strength: </label>
+                                <input type="number" value={input.str} name="str" 
+                                placeholder='0' onChange={(e) => handleChange(e)}/>
+                            </div>
+                            <div className="form-group">
+                                {errors.str && <div className="form-errors">{errors.str}</div>}   
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group">
+                            <label>Defense: </label>
+                                <input type="number" value={input.def} name="def" 
+                                placeholder='0' onChange={(e) => handleChange(e)}/>
+                            </div>
+                            <div className="form-group">
+                                {errors.def && <div className="form-errors">{errors.def}</div>}   
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group">
+                            <label>Speed: </label>
+                                <input type="number" value={input.spd} name="spd" 
+                                placeholder='0' onChange={(e) => handleChange(e)}/>
+                            </div>
+                            <div className="form-group">
+                                {errors.spd && <div className="form-errors">{errors.spd}</div>}   
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group">
+                            <label>Height: </label>
+                                <input type="number" value={input.height} name="height" 
+                                placeholder='0' onChange={(e) => handleChange(e)}/>
+                            </div>
+                            <div className="form-group">
+                                {errors.height && <div className="form-errors">{errors.height}</div>}   
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group">
+                            <label>Weigth: </label>
+                                <input type="number" value={input.wuight} name="weight" 
+                                placeholder='0' onChange={(e) => handleChange(e)}/>
+                            </div>
+                            <div className="form-group">
+                                {errors.weight && <div className="form-errors">{errors.weight}</div>}   
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group">
+                            <label>Image: </label>
+                                <input type="text" value={input.image} name="image" 
+                                placeholder='Insert image URL' onChange={(e) => handleChange(e)}/>
+                            </div>
+                            <div className="form-group">
+                                {errors.image && <div className="form-errors">{errors.image}</div>}   
+                            </div>
+                        </div>
+                        <div className="form-row"><div className="form-group"><label>Type: </label></div></div>
+                        <div className="form-row-cb">    
+                            <div className="form-group-cb">                            
+                                {
+                                    allTypes.map((e)=> {
+                                        return (                                        
+                                        <div className="div-cb" >                                            
+                                        <input className="inpCheckbox" type="checkbox" name={e.name} value={e.name}  
+                                        onChange={(e) => handleCheckBoxOnChange(e)}></input>
+                                        <label>{e.name}</label>
+                                        </div>
+                                        
+                                    )})
+                                }
+                            </div>
+                        <div className="form-errors-cb">{errors.types && <p>{errors.types}</p>}   </div>
+                        </div>
+                        <div className="form-submit">
+                            <button type="submit" disabled={!isEnabled}>Create your Pokemon</button>
+                        </div>
+                    </form>
+                    </div>
+                    <div className="signup-img">
+                    <img src={professorOak} alt="Img not found"/>
+                    </div>
                 </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* <form onSubmit={(e)=> handleSubmit(e)}>
+                
                 <div>
                     <label>Healh Points: </label>
                     <input type="number" value={input.hp} name="hp" onChange={(e) => handleChange(e)}/>
@@ -198,8 +331,9 @@ export default function PokemonCreate(){
                     {errors.types && <p>{errors.types}</p>}                    
                 </div>
                 <button type="submit" disabled={!isEnabled}>Create your Pokemon</button>
-            </form>
-        </div>
+            </form>*/}
+            <div className="footer"></div>            
+        </div>        
     )
 }
 
