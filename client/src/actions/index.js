@@ -23,7 +23,7 @@ export function getTypes(){
 
 export function postPokemon(payload){    
     return async function(dispatch){
-        var json = await axios.post("http://localhost:3001/pokemons", payload);
+        var json = await axios.post("http://localhost:3001/pokemons", payload);        
         return json;           
     };
 };

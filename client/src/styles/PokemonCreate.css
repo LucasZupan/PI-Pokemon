@@ -84,7 +84,7 @@ padding: 10px 30px 10px 30px; }
 
 .form-row-cb {
         display: flex;        
-        flex-wrap: wrap;   
+        flex-wrap: no-wrap;   
         text-align: left;
         margin-left: 20px;
         font-size: 50px;
@@ -116,8 +116,7 @@ padding: 10px 30px 10px 30px; }
 .div-cb{
     border: 3px solid black;
     margin: 5px 5px 5px 5px;
-    background: rgb(195, 193, 193, 0.5);
-    
+    background: rgb(195, 193, 193, 0.5);  
     
 }
 
@@ -125,10 +124,11 @@ padding: 10px 30px 10px 30px; }
     width: 20px;    
 }
 
-.form-submit {
-    margin-bottom: 60px;
-    display: block;
+.form-row-submit {
+    height: 200px;    
+    float: right;
     justify-content: right;
+
 }
 
 
@@ -136,7 +136,7 @@ padding: 10px 30px 10px 30px; }
     line-height: 1.66;
     display: flex;
     justify-content: right;
-    margin: 0;
+    margin-right: 160px;
     padding: 0;
     font-weight: 700;
     color: #222;    
@@ -145,16 +145,15 @@ padding: 10px 30px 10px 30px; }
     margin-bottom: 32px; }
 
 
-
-
-
-
-
-
-
-
-
-
+.buttonSubmit {
+    display: flex;
+    justify-content: right;
+    color: #202223;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
+    font-weight: 500;
+    margin-right: 200px;
+}
 
 
 

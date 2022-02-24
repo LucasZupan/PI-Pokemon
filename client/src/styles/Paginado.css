@@ -14,8 +14,7 @@
     position: absolute;
 }
 .pagButton{
-    position: flex;
-    
+    position: flex;    
     bottom: 0;    
     margin: 0px 15px -5px 0;
 }

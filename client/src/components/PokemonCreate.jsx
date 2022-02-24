@@ -6,6 +6,7 @@ import pokemonLogo from '../img/pokemonLogo.png';
 import professorOak from '../img/professorOak.png';
 import '../styles/PokemonCreate.css'
 
+
 function validate(input) {
     let errors = {};    
     let nameRequire = /^[a-zA-Z]+$/;
@@ -118,7 +119,7 @@ export default function PokemonCreate(){
     };
     
     function handleSubmit(e) {
-        e.preventDefault();    
+        e.preventDefault();            
         dispatch(postPokemon(input));
         alert("Pokemon created");
         setInput({
@@ -140,9 +141,7 @@ export default function PokemonCreate(){
     }, [dispatch]);
 
 
-    // const divStyle = {
-    //     background: `${typeColor[e.name]}`
-    // };
+  
     
     return (
         <div>
@@ -154,7 +153,7 @@ export default function PokemonCreate(){
                 <div className="signup-content">
                     <div className="signup-form">
                     <form class="register-form" id="register-form" onSubmit={(e)=> handleSubmit(e)}>
-                        <h2 className="h2Title">CREATE YOUR POKEMON</h2>
+                        <h2 className="h2Title">POKEMON CREATOR</h2>
                         <div className="form-row">
                             <div className="form-group">
                             <label>Name: </label>
@@ -252,8 +251,8 @@ export default function PokemonCreate(){
                             </div>
                         <div className="form-errors-cb">{errors.types && <p>{errors.types}</p>}   </div>
                         </div>
-                        <div className="form-submit">
-                            <button type="submit" disabled={!isEnabled}>Create your Pokemon</button>
+                        <div className="form-row-submit">
+                           <button type="submit" className="buttonSubmit" disabled={!isEnabled}>Create your Pokemon</button>
                         </div>
                     </form>
                     </div>
@@ -262,76 +261,6 @@ export default function PokemonCreate(){
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* <form onSubmit={(e)=> handleSubmit(e)}>
-                
-                <div>
-                    <label>Healh Points: </label>
-                    <input type="number" value={input.hp} name="hp" onChange={(e) => handleChange(e)}/>
-                    {errors.hp && <p>{errors.hp}</p>}
-                </div>
-                <div>
-                    <label>Strength: </label>
-                    <input type="number" value={input.str} name="str" onChange={(e) => handleChange(e)}/>
-                    {errors.str && <p>{errors.str}</p>}
-                </div>
-                <div>
-                    <label>Defense: </label>
-                    <input type="number" value={input.def} name="def" onChange={(e) => handleChange(e)}/>
-                    {errors.def && <p>{errors.def}</p>}
-                </div>
-                <div>
-                    <label>Speed: </label>
-                    <input type="number" value={input.spd} name="spd" onChange={(e) => handleChange(e)}/>
-                    {errors.spd && <p>{errors.spd}</p>}
-                </div>
-                <div>
-                    <label>Height: </label>
-                    <input type="number" value={input.height} name="height"onChange={(e) => handleChange(e)} />
-                    {errors.height && <p>{errors.height}</p>}
-                </div>
-                <div>
-                    <label>Weight: </label>
-                    <input type="number" value={input.weight} name="weight" onChange={(e) => handleChange(e)}/>
-                    {errors.weight && <p>{errors.weight}</p>}
-                </div>
-                <div>
-                    <label>Image: </label>
-                    <input type="text" value={input.image} name="image" placeholder='Insert image Url' onChange={(e) => handleChange(e)}/>
-                    {errors.image && <p>{errors.image}</p>}
-                </div>
-                <div>
-                    <label>Types: </label><br></br>
-                    {
-                        allTypes.map((e)=> {
-                            return (
-                            <>
-                            <input type="checkbox" name={e.name} value={e.name}  
-                            onChange={(e) => handleCheckBoxOnChange(e)}></input>
-                            <label>{e.name}</label><br></br>
-                            </>
-                        )})
-                    }
-                    {errors.types && <p>{errors.types}</p>}                    
-                </div>
-                <button type="submit" disabled={!isEnabled}>Create your Pokemon</button>
-            </form>*/}
             <div className="footer"></div>            
         </div>        
     )

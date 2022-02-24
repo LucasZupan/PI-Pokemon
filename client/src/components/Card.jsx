@@ -28,7 +28,7 @@ const typeColor = {
     fairy: "#FF0079",
     fighting: "#30336b",
     fire: "#f0932b",
-    flying: "#8lecec",    
+    flying: "#a285bd",    
     grass: "#00b894",
     ground: "#EFB549",
     ghost: "#a55eea",
