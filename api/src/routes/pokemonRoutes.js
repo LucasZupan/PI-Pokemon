@@ -3,7 +3,7 @@ const axios = require("axios");
 const router = Router();
 const { Pokemon, Type } = require("../db.js");
 const {getFromApi, loadFromDb} = require('./utils.js');
-const e = require("express");
+
 
 // MAIN ROUTE
 router.get('/', async (req, res, next) => {
@@ -48,10 +48,10 @@ router.get('/', async (req, res, next) => {
     
     const infoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${random()}&limit=40`);
     let pokemonUrl = infoApi.data.results.map(e => {
-        return axios.get(e.url)
-    });
+        return axios.get(e.url);
+    });   
  
-    const pokemonInfo = await Promise.all(pokemonUrl);
+    const pokemonInfo = await Promise.all(pokemonUrl);    
     const pokemonApi = pokemonInfo.map(e => {
         return {
             name: e.data.name,

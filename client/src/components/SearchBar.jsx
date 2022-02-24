@@ -21,8 +21,8 @@ export default function SearchBar() {
     };
 
     return (
-        <div className="searchDiv">
-            <input className="searchInput" value={name} type='text'  placeholder="Search pokemon..." onChange={(e)=> handleInputChange(e)}/>
+        <div className="searchDiv">            
+            <input className="searchInput" value={name} type='text'  placeholder="Search pokemon..." onKeyDown={(e) => e.key === 'Enter' && handleSubmit(e)} onChange={(e)=> handleInputChange(e)}/>
             <input className="pokebola" type="image" src={pokebola} alt="img not found" onClick={(e) => handleSubmit(e)}/>
         </div>
     )

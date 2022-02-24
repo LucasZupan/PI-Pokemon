@@ -87,7 +87,7 @@ export default function Home() {
     return (
         <div >
             <nav className="navBar">
-                <div><img src={pokemonLogo} className='imgHome' alt="Img not found"/></div>
+                <div><Link to= '/home'><img src={pokemonLogo} className='imgHome' alt="Img not found"/></Link></div>
                     <div className="navItems">
                         <li>                            
                             <select className="selectBox" onChange ={e=> handleSort(e)}>

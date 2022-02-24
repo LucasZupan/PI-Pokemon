@@ -64,8 +64,7 @@ function validate(input) {
     return errors;
 }
 
-export default function PokemonCreate(){
-
+export default function PokemonCreate(){    
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
