@@ -21,10 +21,23 @@ export function getTypes(){
     };
 };
 
-export function postPokemon(payload){    
-    return async function(dispatch){
-        var json = await axios.post("http://localhost:3001/pokemons", payload);        
-        return json;           
+export function postPokemon(payload){ 
+        
+    //alert("Pokemon created");   
+    return async function(){
+        try{
+            var existentPokemon = await axios.get(`http://localhost:3001/pokemons?name=${payload.name.toLowerCase()}`);            
+        }catch(error){
+            console.log(error)
+        }finally{
+            if(existentPokemon){                
+                return alert("A pokemon with than name already exists, pick another one");                
+            }else {                
+                alert("Pokemon created")
+                var json = await axios.post("http://localhost:3001/pokemons", payload);        
+                return json;   
+            }
+        }
     };
 };
 
@@ -66,12 +79,16 @@ export function getPokemonByName(payload){
     return async function (dispatch){
         try{
             var json = await axios.get(`http://localhost:3001/pokemons?name=${payload}`)
-            return dispatch({
-                type: GET_POKEMON_BY_NAME,
-                payload: json.data
-            });
+            
         }catch (error){
             console.log(error)
+        }finally{
+            if (json) {
+                return dispatch({
+                    type: GET_POKEMON_BY_NAME,
+                    payload: json.data
+                });
+            }else return alert("Pokemon not found")
         }
     }
 }
@@ -85,8 +102,18 @@ export function getPokemonById(payload){
                 payload: json.data
             });
         }catch(error){
-            console.log(error)
+            //console.log(error)
         }
     }
 
 }
+
+
+
+// export function postPokemon(payload){ 
+//     alert("Pokemon created");   
+//     return async function(dispatch){
+//         var json = await axios.post("http://localhost:3001/pokemons", payload);        
+//         return json;           
+//     };
+// };

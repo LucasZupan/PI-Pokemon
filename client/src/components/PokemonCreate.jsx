@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import {postPokemon, getTypes} from '../actions'
+import {getPokemons, postPokemon, getTypes} from '../actions'
 import pokemonLogo from '../img/pokemonLogo.png';
 import professorOak from '../img/professorOak.png';
 import '../styles/PokemonCreate.css'
@@ -10,7 +10,7 @@ import '../styles/PokemonCreate.css'
 function validate(input) {
     let errors = {};    
     let nameRequire = /^[a-zA-Z]+$/;
-    let numbers = /^[0-9\b]+$/;
+    let numbers = /^[0-9]*[1-9][0-9]*$/;
     let validateUrl = /\.(gif|jpeg|jpg|png)$/i;
 
     if(!input.name){
@@ -95,7 +95,7 @@ export default function PokemonCreate(){
     };
     
     function handleCheckBoxOnChange(e) {      
-        let clickedType = allTypes.filter(el => e.target.value === el.name ).map(el => el.id)            
+       let clickedType = allTypes.filter(el => e.target.value === el.name ).map(el => el.id)            
         if(e.target.checked){
             setInput({
                 ...input,
@@ -120,7 +120,9 @@ export default function PokemonCreate(){
     function handleSubmit(e) {
         e.preventDefault();            
         dispatch(postPokemon(input));
-        alert("Pokemon created");
+        for(let i = 0; i<input.types.length; i++){
+            document.getElementById(input.types[i]).checked = false;
+        }
         setInput({
             name: '',
             hp: 0,
@@ -132,9 +134,10 @@ export default function PokemonCreate(){
             image: '',
             types: []  
         });
+        dispatch(getPokemons());
         navigate('/home');
     }
-    
+
     useEffect(() => {
         dispatch(getTypes());
     }, [dispatch]);
@@ -151,7 +154,7 @@ export default function PokemonCreate(){
             <div className="container">
                 <div className="signup-content">
                     <div className="signup-form">
-                    <form class="register-form" id="register-form" onSubmit={(e)=> handleSubmit(e)}>
+                    <form className="register-form" id="register-form" onSubmit={(e)=> handleSubmit(e)}>
                         <h2 className="h2Title">POKEMON CREATOR</h2>
                         <div className="form-row">
                             <div className="form-group">
@@ -215,8 +218,8 @@ export default function PokemonCreate(){
                         </div>
                         <div className="form-row">
                             <div className="form-group">
-                            <label>Weigth: </label>
-                                <input type="number" value={input.wuight} name="weight" 
+                            <label>Weight: </label>
+                                <input type="number" value={input.weight} name="weight" 
                                 placeholder='0' onChange={(e) => handleChange(e)}/>
                             </div>
                             <div className="form-group">
@@ -240,8 +243,8 @@ export default function PokemonCreate(){
                                     allTypes.map((e)=> {
                                         return (                                        
                                         <div className="div-cb" >                                            
-                                        <input className="inpCheckbox" type="checkbox" name={e.name} value={e.name}  
-                                        onChange={(e) => handleCheckBoxOnChange(e)}></input>
+                                        <input className="inpCheckbox" type="checkbox" name={e.name} value={e.name}   
+                                        id={e.id} onChange={(e) => handleCheckBoxOnChange(e)}></input>
                                         <label>{e.name}</label>
                                         </div>
                                         

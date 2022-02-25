@@ -38,7 +38,9 @@ const typeColor = {
     psychic: "#a29bfe",
     rock: "#2d3436",
     steel: "#5d91ac",
-    water: "#0190FF",    
+    water: "#0190FF",
+    shadow:"#3837371c",
+    unknown: "#f09a9a1c"   
 }
 
 

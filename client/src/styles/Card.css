@@ -42,7 +42,7 @@
 }
 .pokeName {
   text-align: center;
-  font-weight: 600;
+  font-weight: 600; 
 }
 .pokeTypes {
   display: flex;

@@ -147,8 +147,14 @@ return (
             myPokemon.length > 0 ?
             <div className="container">
                 <h1 className="h1Title">{myPokemon[0].name}</h1>                    
+                {/* <span className="h2Title">ID: {myPokemon[0].id}</span>*/}
                 <div className="detail-content">                    
                     <div className="detail-form">
+                        {/* <div className="detail-row">
+                                <div className="detail-group">
+                                <label>Id: {myPokemon[0].id} </label>                                
+                                </div> 
+                        </div> */}
                         <div className="detail-row">
                                 <div className="detail-group">
                                 <label>Health Points: {myPokemon[0].hp} points</label>                                

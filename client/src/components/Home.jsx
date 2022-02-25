@@ -68,6 +68,10 @@ export default function Home() {
         setCurrentPage(1);
         
     };
+    function handleOnClick(){
+        window.location.reload(false);
+    }
+
 
     function handleSort(e) {
         e.preventDefault();
@@ -87,7 +91,7 @@ export default function Home() {
     return (
         <div >
             <nav className="navBar">
-                <div><Link to= '/home'><img src={pokemonLogo} className='imgHome' alt="Img not found"/></Link></div>
+                <div><Link to='/home'><img src={pokemonLogo} className='imgHome' alt="Img not found" onClick={() => handleOnClick()}/></Link></div>
                     <div className="navItems">
                         <li>                            
                             <select className="selectBox" onChange ={e=> handleSort(e)}>
