@@ -1,4 +1,4 @@
-import {GET_POKEMONS, GET_TYPES, GET_POKEMON_BY_NAME, GET_POKEMON_BY_ID, FILTER_BY_TYPE, FILTER_CREATED, ORDER_BY_DEFAULT, ORDER_BY_NAME, ORDER_BY_SRENGTH} from './constants';
+import {GET_POKEMONS, GET_TYPES, GET_POKEMON_BY_NAME, GET_POKEMON_BY_ID, ORDER_BY_DEFAULT, ORDER_BY_NAME, ORDER_BY_SRENGTH, FILTER_ALL} from './constants';
 import axios from 'axios';
 
 export function getPokemons(){
@@ -43,14 +43,14 @@ export function postPokemon(payload){
 
 export function filterPokemonsByType(payload){
     return {
-        type: FILTER_BY_TYPE,
+        type: FILTER_ALL,
         payload
     };
 };
 
 export function filterCreated(payload) {
     return {
-        type: FILTER_CREATED,
+        type: FILTER_ALL,
         payload
     };
 };

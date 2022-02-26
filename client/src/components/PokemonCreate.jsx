@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import {getPokemons, postPokemon, getTypes} from '../actions'
+import {postPokemon, getTypes} from '../actions'
 import pokemonLogo from '../img/pokemonLogo.png';
 import professorOak from '../img/professorOak.png';
 import '../styles/PokemonCreate.css'
@@ -67,6 +67,7 @@ function validate(input) {
 export default function PokemonCreate(){    
 
     const dispatch = useDispatch();
+    // eslint-disable-next-line
     const navigate = useNavigate();
     const allTypes = useSelector((state) => state.types);        
     const [errors, setErrors] = useState({});    
@@ -120,9 +121,9 @@ export default function PokemonCreate(){
     function handleSubmit(e) {
         e.preventDefault();            
         dispatch(postPokemon(input));
-        for(let i = 0; i<input.types.length; i++){
-            document.getElementById(input.types[i]).checked = false;
-        }
+         for(let i = 0; i<input.types.length; i++){
+             document.getElementById(input.types[i]).checked = false;
+         }
         setInput({
             name: '',
             hp: 0,
@@ -134,8 +135,8 @@ export default function PokemonCreate(){
             image: '',
             types: []  
         });
-        dispatch(getPokemons());
-        navigate('/home');
+        //dispatch(getPokemons());
+        //navigate('/home');
     }
 
     useEffect(() => {
@@ -158,7 +159,7 @@ export default function PokemonCreate(){
                         <h2 className="h2Title">POKEMON CREATOR</h2>
                         <div className="form-row">
                             <div className="form-group">
-                            <label>Name: </label>
+                            <label>Name:</label>
                                 <input type="text" value={input.name} name="name" 
                                 placeholder='Insert name'onChange={(e) => handleChange(e)}/>
                             </div>
@@ -168,7 +169,7 @@ export default function PokemonCreate(){
                         </div>
                         <div className="form-row">
                             <div className="form-group">
-                            <label>Health Points: </label>
+                            <label>Health Points:</label>
                                 <input type="number" value={input.hp} name="hp" 
                                 placeholder='0' onChange={(e) => handleChange(e)}/>
                             </div>
@@ -178,7 +179,7 @@ export default function PokemonCreate(){
                         </div>
                         <div className="form-row">
                             <div className="form-group">
-                            <label>Strength: </label>
+                            <label>Strength:</label>
                                 <input type="number" value={input.str} name="str" 
                                 placeholder='0' onChange={(e) => handleChange(e)}/>
                             </div>
@@ -188,7 +189,7 @@ export default function PokemonCreate(){
                         </div>
                         <div className="form-row">
                             <div className="form-group">
-                            <label>Defense: </label>
+                            <label>Defense:</label>
                                 <input type="number" value={input.def} name="def" 
                                 placeholder='0' onChange={(e) => handleChange(e)}/>
                             </div>
@@ -198,7 +199,7 @@ export default function PokemonCreate(){
                         </div>
                         <div className="form-row">
                             <div className="form-group">
-                            <label>Speed: </label>
+                            <label>Speed:</label>
                                 <input type="number" value={input.spd} name="spd" 
                                 placeholder='0' onChange={(e) => handleChange(e)}/>
                             </div>
@@ -208,7 +209,7 @@ export default function PokemonCreate(){
                         </div>
                         <div className="form-row">
                             <div className="form-group">
-                            <label>Height: </label>
+                            <label>Height:</label>
                                 <input type="number" value={input.height} name="height" 
                                 placeholder='0' onChange={(e) => handleChange(e)}/>
                             </div>
@@ -218,7 +219,7 @@ export default function PokemonCreate(){
                         </div>
                         <div className="form-row">
                             <div className="form-group">
-                            <label>Weight: </label>
+                            <label>Weight:</label>
                                 <input type="number" value={input.weight} name="weight" 
                                 placeholder='0' onChange={(e) => handleChange(e)}/>
                             </div>
@@ -228,7 +229,7 @@ export default function PokemonCreate(){
                         </div>
                         <div className="form-row">
                             <div className="form-group">
-                            <label>Image: </label>
+                            <label>Image:</label>
                                 <input type="text" value={input.image} name="image" 
                                 placeholder='Insert image URL' onChange={(e) => handleChange(e)}/>
                             </div>
@@ -236,16 +237,16 @@ export default function PokemonCreate(){
                                 {errors.image && <div className="form-errors">{errors.image}</div>}   
                             </div>
                         </div>
-                        <div className="form-row"><div className="form-group"><label>Type: </label></div></div>
+                        <div className="form-row"><div className="form-group"><label>Types:</label></div></div>
                         <div className="form-row-cb">    
                             <div className="form-group-cb">                            
                                 {
                                     allTypes.map((e)=> {
                                         return (                                        
-                                        <div className="div-cb" >                                            
+                                        <div className="div-cb" key={e.id}>                                            
                                         <input className="inpCheckbox" type="checkbox" name={e.name} value={e.name}   
-                                        id={e.id} onChange={(e) => handleCheckBoxOnChange(e)}></input>
-                                        <label>{e.name}</label>
+                                        id={e.id} key={e.name} onChange={(e) => handleCheckBoxOnChange(e)}></input>
+                                        <label key={e.id*100}>{e.name}</label>
                                         </div>
                                         
                                     )})

@@ -1,27 +1,32 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons, getTypes, filterPokemonsByType, filterCreated, orderByName, orderByStrength, orderByDefault } from "../actions";
+import { getPokemons, getPokemonByName, getTypes, filterPokemonsByType, filterCreated, orderByName, orderByStrength, orderByDefault } from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import Paginado from "./Paginado";
-import SearchBar from "./SearchBar";
 import pokemonLogo from '../img/pokemonLogo.png';
 import '../styles/Home.css'
 import '../styles/NavBar.css'
-
+import pokebola from '../img/pokebola.png';
+import '../styles/SearchBar.css'
 
 
 export default function Home() {
     const dispatch = useDispatch();
     const allPokemons = useSelector((state) => state.pokemons);
-    const allTypes = useSelector((state) => state.types);    
+    const allTypes = useSelector((state) => state.types); 
     // Estados Locales
+    const [name, setName] = useState('');   
     const [currentPage, setCurrentPage] = useState(1);
     // eslint-disable-next-line
     const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
     // eslint-disable-next-line
     const [order, setOrder] = useState('');
+    const [originType, setOriginType] = useState({
+        origin: "all",
+        type: "all"
+    });
     const indexOfLastPokemon = currentPage * pokemonsPerPage;
     const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
     const currentPokemons = allPokemons.slice(indexOfFirstPokemon,indexOfLastPokemon)    
@@ -41,7 +46,14 @@ export default function Home() {
     };
 
     function handleFilterType(e) {
-        dispatch(filterPokemonsByType(e.target.value));
+        setOriginType({
+            ...originType,
+            type: e.target.value
+        })
+        dispatch(filterPokemonsByType(
+            {origin: originType.origin,
+            type: e.target.value     
+        }));
         const currentOrder = order.split(" ").pop()
         
         if(currentOrder  === 'strMax' || currentOrder === 'strMin'){
@@ -55,7 +67,14 @@ export default function Home() {
     };
 
     function handleFilterCreated(e){
-        dispatch(filterCreated(e.target.value));
+        setOriginType({
+            ...originType,
+            origin: e.target.value
+        })
+        dispatch(filterCreated(
+            {origin: e.target.value,
+            type: originType.type    
+        }));
         const currentOrder = order.split(" ").pop()
         
         if(currentOrder  === 'strMax' || currentOrder === 'strMin'){
@@ -87,6 +106,17 @@ export default function Home() {
         setOrder(`Ordenado ${e.target.value}`);        
     }
 
+    function handleInputChangeSearch(e){
+        e.preventDefault();
+        setName(e.target.value);
+    };
+
+    async function handleSubmitSearch(e){
+        e.preventDefault();
+        await dispatch(getPokemonByName(name.toLowerCase()));
+        setName('');
+        setCurrentPage(1);
+    };
 
     return (
         <div >
@@ -127,7 +157,11 @@ export default function Home() {
                         </li>
                     </div>
                     <div>
-                        <SearchBar/>                
+                        <div className="searchDiv">            
+                            <input className="searchInput" value={name} type='text'  placeholder="Search pokemon..." 
+                            onKeyDown={(e) => e.key === 'Enter' && handleSubmitSearch(e)} onChange={(e)=> handleInputChangeSearch(e)}/>
+                            <input className="pokebola" type="image" src={pokebola} alt="img not found" onClick={(e) => handleSubmitSearch(e)}/>
+                        </div>               
                     </div>             
             </nav>
         <div>        

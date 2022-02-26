@@ -7,6 +7,7 @@
 /* ------------------------------------ */
 
 .divLanding {
+    text-align: center;
     background-image: url('../img/LandingPage.jpg');
     width: 100%;
     height:100%;

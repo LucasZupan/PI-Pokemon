@@ -1,4 +1,4 @@
-import { GET_POKEMONS, GET_TYPES, GET_POKEMON_BY_NAME, GET_POKEMON_BY_ID, POST_POKEMON, FILTER_BY_TYPE, FILTER_CREATED, ORDER_BY_DEFAULT, ORDER_BY_NAME, ORDER_BY_SRENGTH } from "../actions/constants";
+import { GET_POKEMONS, GET_TYPES, GET_POKEMON_BY_NAME, GET_POKEMON_BY_ID, POST_POKEMON, ORDER_BY_DEFAULT, ORDER_BY_NAME, ORDER_BY_SRENGTH, FILTER_ALL } from "../actions/constants";
 
 const initialState = {
     pokemons: [],
@@ -34,19 +34,28 @@ function rootReducer (state = initialState, action) {
             return {
                 ...state
             }
-        case FILTER_BY_TYPE:
-            const allPokemons = state.pokemonsCopy
-            const typeFilter = action.payload === 'all' ? allPokemons : allPokemons.filter(e => e.types.includes(action.payload))
+        // case FILTER_BY_TYPE:
+        //     const allPokemons = state.pokemonsCopy
+        //     const typeFilter = action.payload === 'all' ? allPokemons : allPokemons.filter(e => e.types.includes(action.payload))
+        //     return {
+        //         ...state,
+        //         pokemons: typeFilter
+        //     };
+        // case FILTER_CREATED:            
+        //     const allPokemons2 = state.pokemonsCopy;
+        //     const createdFilter = action.payload === 'db' ? allPokemons2.filter(e => e.createdInDb) : allPokemons2.filter(e => !e.createdInDb);
+        //     return {
+        //         ...state,
+        //         pokemons: action.payload === "all" ? allPokemons2 : createdFilter
+        //     }
+        case FILTER_ALL:
+            console.log(action.payload);
+            const allPokemons3 = state.pokemonsCopy
+            const filterType = action.payload.type  === 'all' ? allPokemons3 : allPokemons3.filter(e => e.types.includes(action.payload.type));
+            const filterOrigin = action.payload.origin === 'db' ? filterType.filter(e => e.createdInDb) : filterType.filter(e => !e.createdInDb);
             return {
                 ...state,
-                pokemons: typeFilter
-            };
-        case FILTER_CREATED:            
-            const allPokemons2 = state.pokemonsCopy;
-            const createdFilter = action.payload === 'db' ? allPokemons2.filter(e => e.createdInDb) : allPokemons2.filter(e => !e.createdInDb);
-            return {
-                ...state,
-                pokemons: action.payload === "all" ? allPokemons2 : createdFilter
+                pokemons: action.payload.origin === "all" ? filterType : filterOrigin
             }
         case ORDER_BY_DEFAULT:
             let dbArray = state.pokemons.filter(e => e.id.length > 5);            

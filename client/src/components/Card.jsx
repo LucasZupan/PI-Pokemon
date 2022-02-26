@@ -121,6 +121,3 @@ export default function Card({id, name, image, str, types, hp, spd, def}) {
 }
 
 
-// types.forEach(element => {
-//     return <img source={dragon} alt={""+element} />
-

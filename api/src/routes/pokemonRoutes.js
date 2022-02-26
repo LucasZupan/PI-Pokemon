@@ -17,10 +17,10 @@ router.get('/', async (req, res, next) => {
       });
       if(!pokemonDb) {    
             const myPokemon = await getFromApi(name);            
-            res.send(myPokemon);
+            res.status(200).send(myPokemon);
         }        
         const myPokemonDb = loadFromDb(pokemonDb);      
-        res.send(myPokemonDb);
+        res.status(200).send(myPokemonDb);
     } catch (error) {
         res.status(404).send("No se encontro pokemon: "+ error);
     }
@@ -66,7 +66,7 @@ router.get('/', async (req, res, next) => {
     })
 
     const myPokemon = pokemonDb.concat(pokemonApi);
-    res.send(myPokemon);
+    res.status(200).send(myPokemon);
     } catch(error){
         next(error);
     }
@@ -89,7 +89,7 @@ router.get('/:id',async (req,res,next) => {
     }else{
         try{
             const myPokemon = await getFromApi(id); 
-            res.send(myPokemon);
+            res.status(200).send(myPokemon);
         }catch(error){
             next(error);
         }
