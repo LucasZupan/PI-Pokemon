@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export function getPokemons(){
     return async function(dispatch){
-        var json = await axios.get("http://localhost:3001/pokemons");
+        var json = await axios.get("/pokemons");
         return dispatch({
             type: GET_POKEMONS,
             payload: json.data
@@ -13,7 +13,7 @@ export function getPokemons(){
 
 export function getTypes(){
     return async function(dispatch){
-        var json = await axios.get("http://localhost:3001/types");
+        var json = await axios.get("/types");
         return dispatch({
             type: GET_TYPES,
             payload: json.data
@@ -26,7 +26,7 @@ export function postPokemon(payload){
     //alert("Pokemon created");   
     return async function(){
         try{
-            var existentPokemon = await axios.get(`http://localhost:3001/pokemons?name=${payload.name.toLowerCase()}`);            
+            var existentPokemon = await axios.get(`/pokemons?name=${payload.name.toLowerCase()}`);            
         }catch(error){
             console.log(error)
         }finally{
@@ -34,7 +34,7 @@ export function postPokemon(payload){
                 return alert("A pokemon with than name already exists, pick another one");                
             }else {                
                 alert("Pokemon created")
-                var json = await axios.post("http://localhost:3001/pokemons", payload);        
+                var json = await axios.post("/pokemons", payload);        
                 return json;   
             }
         }
@@ -78,7 +78,7 @@ export function orderByStrength(payload) {
 export function getPokemonByName(payload){
     return async function (dispatch){
         try{
-            var json = await axios.get(`http://localhost:3001/pokemons?name=${payload}`)
+            var json = await axios.get(`/pokemons?name=${payload}`)
             
         }catch (error){
             console.log(error)
@@ -96,7 +96,7 @@ export function getPokemonByName(payload){
 export function getPokemonById(payload){
     return async function (dispatch){
         try{
-            var json = await axios.get(`http://localhost:3001/pokemons/${payload}`)
+            var json = await axios.get(`/pokemons/${payload}`)
             return dispatch({
                 type: GET_POKEMON_BY_ID,
                 payload: json.data
