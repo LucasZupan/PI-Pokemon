@@ -39,9 +39,10 @@ export default function Home() {
         dispatch(getTypes());
     },[dispatch])
 
-    function handleClick(e) {
+    async function handleClick(e) {
         e.preventDefault();
-        dispatch(getPokemons());
+    await dispatch(getPokemons());
+    dispatch(filterCreated(originType));
        
     };
 
@@ -169,7 +170,7 @@ export default function Home() {
         <div className="fondo">
             <div className="cards">                     
             {
-                currentPokemons?.map(e=> {
+                currentPokemons.length === 0 ? <h2 className="h2error">"There are no pokemon available. Try chaging your filters"</h2> : currentPokemons.map(e=> {
                     return (  
                         <Card name={e.name} key={e.id} image={e.image} str={e.str} 
                         types={e.types} spd={e.spd} def={e.def} hp={e.hp} id={e.id}/>   
