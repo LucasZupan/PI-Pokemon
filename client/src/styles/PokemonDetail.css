@@ -28,7 +28,7 @@
     padding: 10px 30px 10px 30px; }
 
 .detail-img {
-    display: flex;
+    display: flex;    
     justify-content: center;
     width: 50%;
     margin-top: 20px;
@@ -39,7 +39,7 @@
     width: 50%; }
 
 .size-img {
-    width: 700px; }
+    width: 550px; }
     
 .detail-form {
 margin-top: 50px;

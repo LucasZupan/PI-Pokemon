@@ -99,6 +99,7 @@ router.get('/:id',async (req,res,next) => {
 router.post('/', async (req, res, next) => {
     try {
         const {name, image, hp, str, def, spd, height, weight, types } = req.body;
+        //Se podria validar aca tambien??
         const pokemon = await Pokemon.create({ name: name.toLowerCase(), image, hp, str, def, spd, height, weight})
         
         await pokemon.addTypes(types);

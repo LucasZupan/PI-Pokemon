@@ -7,7 +7,7 @@ import PokemonCreate from './components/PokemonCreate.jsx'
 import Detail from './components/Detail';
 
 function App() {
-  return (             
+  return (       
     <Routes >
            <Route exact path= '/*' element={<NotFound/>}/>
            <Route exact path= '/' element={<LandingPage/>}/>
@@ -15,6 +15,7 @@ function App() {
            <Route path = '/home' element={<Home/>}/>           
            <Route path='/createpokemon' element= {<PokemonCreate/>}/>
        </Routes>          
+             
          
     
   );

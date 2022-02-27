@@ -85,7 +85,7 @@ describe('Pokemon model', () => {
           .catch(() => done());
       });
       it('should work when its a valid image', () => {
-        Pokemon.create({ image: 'https://i.pinimg.com/564x/50/c0/5f/50c05f2225470ff6c2d84d5e5ea40a1e.jpg' });
+        Pokemon.create({ image: 'unaimagen.jpg' });
       });
     });
   });
