@@ -147,7 +147,7 @@ export default function PokemonCreate(){
   
     
     return (
-        <div>
+        <div>            
             <nav className="navBar">
                 <Link to= '/home'><img src={pokemonLogo} className='imgHome' alt="Img not found"/></Link> 
                 <Link to= '/home'><button className="buttonNav">Back home</button></Link>
@@ -156,7 +156,7 @@ export default function PokemonCreate(){
                 <div className="signup-content">
                     <div className="signup-form">
                     <form className="register-form" id="register-form" onSubmit={(e)=> handleSubmit(e)}>
-                        <h2 className="h2Title">POKEMON CREATOR</h2>
+                        <h2 className="h2TitleCreate">POKEMON CREATOR</h2>
                         <div className="form-row">
                             <div className="form-group">
                             <label>Name:</label>

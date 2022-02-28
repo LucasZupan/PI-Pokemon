@@ -29,7 +29,7 @@ return (
             myPokemon.length > 0 ?
             <div className="container">
                 <h1 className="h1Title">{myPokemon[0].name}</h1>                    
-                {/* <span className="h2Title">ID: {myPokemon[0].id}</span>*/}
+                <span className="h2Title">ID: {myPokemon[0].id}</span>
                 <div className="detail-content">                    
                     <div className="detail-form">
                         {/* <div className="detail-row">
