@@ -20,8 +20,7 @@ export default function Home() {
     const [name, setName] = useState('');   
     const [currentPage, setCurrentPage] = useState(1);
     // eslint-disable-next-line
-    const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
-    // eslint-disable-next-line
+    const [pokemonsPerPage, setPokemonsPerPage] = useState(12);    
     const [order, setOrder] = useState('');
     const [originType, setOriginType] = useState({
         origin: "all",
@@ -114,9 +113,12 @@ export default function Home() {
 
     async function handleSubmitSearch(e){
         e.preventDefault();
-        await dispatch(getPokemonByName(name.toLowerCase()));
-        setName('');
-        setCurrentPage(1);
+        if(name === "") return alert("Enter a pokemon name")
+        else{            
+            await dispatch(getPokemonByName(name.toLowerCase()));
+            setName('');
+            setCurrentPage(1);
+        }
     };
 
     return (

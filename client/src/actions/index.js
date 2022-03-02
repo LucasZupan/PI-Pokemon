@@ -11,6 +11,23 @@ export function getPokemons(){
     };   
 };
 
+// export function getPokemons(){
+//     return function(dispatch){
+//        return fetch("http://localhost:3001/pokemons")
+//        .then(resApi => {           
+//            return resApi.json()
+//        })
+//        .then(response => {
+//            console.log(response)
+//            return dispatch({
+//                type: GET_POKEMONS,
+//                payload: response
+//             })
+//         })
+//     };   
+// };
+
+
 export function getTypes(){
     return async function(dispatch){
         var json = await axios.get("/types");
@@ -21,9 +38,8 @@ export function getTypes(){
     };
 };
 
-export function postPokemon(payload){ 
-        
-    //alert("Pokemon created");   
+export function postPokemon(payload){         
+     
     return async function(){
         try{
             var existentPokemon = await axios.get(`/pokemons?name=${payload.name.toLowerCase()}`);            

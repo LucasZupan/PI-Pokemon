@@ -48,8 +48,7 @@ function rootReducer (state = initialState, action) {
         //         ...state,
         //         pokemons: action.payload === "all" ? allPokemons2 : createdFilter
         //     }
-        case FILTER_ALL:
-            console.log(action.payload);
+        case FILTER_ALL:                     
             const allPokemons3 = state.pokemonsCopy
             const filterType = action.payload.type  === 'all' ? allPokemons3 : allPokemons3.filter(e => e.types.includes(action.payload.type));
             const filterOrigin = action.payload.origin === 'db' ? filterType.filter(e => e.createdInDb) : filterType.filter(e => !e.createdInDb);
