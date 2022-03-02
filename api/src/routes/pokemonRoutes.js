@@ -31,15 +31,15 @@ router.get('/', async (req, res, next) => {
     const infoDb = await Pokemon.findAll({include: Type});
     const pokemonDb = infoDb.map(p => {
         return {
+            id: p.id,
             name: p.name,
             image: p.image,
-            types: p.types.map(e => e.name),
-            str: p.str,
-            id: p.id,
-            spd: p.spd,
             hp: p.hp,
+            str: p.str,
+            spd: p.spd,
             def: p.def,
-            createdInDb: p.createdInDb
+            createdInDb: p.createdInDb,
+            types: p.types.map(e => e.name)
         }
     });
     const random = () => {
@@ -73,9 +73,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:id',async (req,res,next) => {
-    const { id } = req.params;
-    console.log(id);
-    
+    const { id } = req.params;    
 
     if(id.includes('-')){
         try {
