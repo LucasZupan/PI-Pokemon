@@ -84,7 +84,7 @@ export default function PokemonCreate(){
     });
     const isEnabled = Object.keys(errors).length === 0 && input.name !== '';
     
-    function handleChange(e) {        
+    function handleChange(e) {           
         setInput({
             ...input,
             [e.target.name]: e.target.value

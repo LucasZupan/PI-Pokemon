@@ -43,8 +43,9 @@ router.get('/', async (req, res, next) => {
         }
     });
     const random = () => {
-        return Math.floor(111*Math.random());
+        return Math.floor(111*Math.random());        
     }
+   
     
     const infoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${random()}&limit=40`);
     let pokemonUrl = infoApi.data.results.map(e => {
@@ -77,7 +78,7 @@ router.get('/:id',async (req,res,next) => {
 
     if(id.includes('-')){
         try {
-            const pokemonDb = await Pokemon.findByPk(id, {include: Type});    
+            const pokemonDb = await Pokemon.findByPk(id, {include: Type});                
             const myPokemonDb = loadFromDb(pokemonDb);
           
             if(myPokemonDb) return res.json(myPokemonDb);          

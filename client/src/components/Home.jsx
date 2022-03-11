@@ -41,7 +41,16 @@ export default function Home() {
     async function handleClick(e) {
         e.preventDefault();
     await dispatch(getPokemons());
-    dispatch(filterCreated(originType));
+    const currentOrder = order.split(" ").pop()
+    if(currentOrder  === 'strMax' || currentOrder === 'strMin'){
+        dispatch(orderByStrength(currentOrder));            
+    }else if(currentOrder === 'asc' || currentOrder === 'desc'){
+        dispatch(orderByName(currentOrder));
+    }else {
+        dispatch(orderByDefault());        
+    }
+    await dispatch(filterCreated(originType));
+
        
     };
 
