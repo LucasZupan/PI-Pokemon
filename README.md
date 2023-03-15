@@ -8,10 +8,10 @@
 
 ## Introduction
 
-This is a student individual project done as a first big assigment, in wich join all the technologies learned at SoyHenry bootcamp.
-To check
+This is a student individual project done as a first big assigment, in which join all the technologies learned at SoyHenry bootcamp.
 
-## Project Objetives
+
+## Project Objectives
 
 - Build a JavaScript App from scratch
 - Afirm and conect all the learned concepts in the Carreer 
