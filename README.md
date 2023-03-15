@@ -14,7 +14,7 @@ This is a student individual project done as a first big assigment, in which joi
 ## Project Objectives
 
 - Build a JavaScript App from scratch
-- Afirm and conect all the learned concepts in the Carreer 
+- Afirm and conect all the learned concepts in the Career 
 
 ## Stack of Technologies
 
